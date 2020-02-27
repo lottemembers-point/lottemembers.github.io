@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>${evnNm} > 엘포인트</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="https://unpkg.com/jquery"></script>
+	<script>
+		function getParam(sname) {
+			var params = location.search.substr(location.search.indexOf("?") + 1);
+			var sval = "";
+					params = params.split("&");
+			for (var i = 0; i < params.length; i++) {
+				temp = params[i].split("=");
+				if ([temp[0]] == sname) { sval = temp[1]; }
+			}
+			return sval;
+		}
+		$(function(){
+			var url = {
+				'm':'https://m.lpoint.com/app/event/LWEA100200.do?evnId='+getParam('evnId'),
+				'a':'https://mobile.lpoint.com/app/common/AMZZ300400.do?type=event&evnId='+getParam('evnId')'
+			}
+			$('.el-linkto > .el').attr('href',url['a']);
+
+			setTimeout(function(){
+				location.href=url['m'];
+			},5000);
+		})
+	</script>	
+	<link rel="stylesheet" href="./res/css/default.css">
+</head>
+<body>
+	<div class="container">
+		<div class="top-container">
+			<div class="logo"><img src="./res/images/logo-lpoint.png" alt="L.POINT"></div>
+			<div class="headline">이벤트로 이동 중 입니다</div>
+			<div class="description">앱으로 확인하실 분은 아래 버튼을 클릭해주세요</div>
+		</div>
+		<div class="body-container">
+			<div class="helloworld"></div>
+		</div>
+		<div class="bottom-container">
+			<div class="el-store">
+				<a href="https://itunes.apple.com/kr/app/losdemembeoseu/id473250588" class="el" data-os="ios">
+					<p><img src="./res/images/icon-appstore.png" width="34" alt="앱스토어"></p>
+					<p>앱스토어</p>
+				</a>
+				<a href="https://play.google.com/store/apps/details?id=com.lottemembers.android" class="el" data-os="android">
+					<p><img src="./res/images/icon-googleplay.png" width="34" alt="구글플레이스토어"></p>
+					<p>구글 플레이 스토어</p>
+				</a>
+				<a href="https://onestore.co.kr/userpoc/apps/view?pid=0000702146" class="el" data-os="android">
+					<p><img src="./res/images/icon-onestore.png" width="34" alt="원스토어"></p>
+					<p>원스토어</p>
+				</a>
+			</div>
+			<div class="el-linkto">
+				<a href="https://mobile.lpoint.com/app/common/AMZZ300400.do?type=event&evnId=EVN502530" class="el">앱으로 확인하기</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
