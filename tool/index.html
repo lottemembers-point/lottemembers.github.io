@@ -20,6 +20,7 @@
 			return sval;
 		}
 		$(function(){
+			$('.headline > b').text(getParam('evnId'));
 			var url = {
 				'm':'https://m.lpoint.com/app/event/LWEA100200.do?evnId='+getParam('evnId'),
 				'a':'https://mobile.lpoint.com/app/common/AMZZ300400.do?type=event&evnId='+getParam('evnId')
@@ -28,7 +29,7 @@
 
 			setTimeout(function(){
 				location.href=url['m'];
-			},5000);
+			},3000);
 		})
 	</script>	
 	<link rel="stylesheet" href="./res/css/default.css">
@@ -37,29 +38,18 @@
 	<div class="container">
 		<div class="top-container">
 			<div class="logo"><img src="./res/images/logo-lpoint.png" alt="L.POINT"></div>
-			<div class="headline">이벤트로 이동 중 입니다</div>
-			<div class="description">앱으로 확인하실 분은 아래 버튼을 클릭해주세요</div>
+			<div class="headline"><b></b> 이벤트로 이동 중 입니다</div>
+			<div class="description">
+				앱으로 확인하실 분은 아래 버튼을 클릭해주세요
+				<br>3초뒤에 모바일웹 화면으로 이동됩니다
+			</div>
 		</div>
 		<div class="body-container">
 			<div class="helloworld"></div>
 		</div>
-		<div class="bottom-container">
-			<div class="el-store">
-				<a href="https://itunes.apple.com/kr/app/losdemembeoseu/id473250588" class="el" data-os="ios">
-					<p><img src="./res/images/icon-appstore.png" width="34" alt="앱스토어"></p>
-					<p>앱스토어</p>
-				</a>
-				<a href="https://play.google.com/store/apps/details?id=com.lottemembers.android" class="el" data-os="android">
-					<p><img src="./res/images/icon-googleplay.png" width="34" alt="구글플레이스토어"></p>
-					<p>구글 플레이 스토어</p>
-				</a>
-				<a href="https://onestore.co.kr/userpoc/apps/view?pid=0000702146" class="el" data-os="android">
-					<p><img src="./res/images/icon-onestore.png" width="34" alt="원스토어"></p>
-					<p>원스토어</p>
-				</a>
-			</div>
 			<div class="el-linkto">
-				<a href="https://mobile.lpoint.com/app/common/AMZZ300400.do?type=event&evnId=EVN502530" class="el">앱으로 확인하기</a>
+				<a href="#" class="el __mobile">모바일웹으로 확인하기</a>
+				<a href="#" class="el __app">앱으로 확인하기</a>
 			</div>
 		</div>
 	</div>

@@ -46,8 +46,8 @@ html, body { height:100%; }
           justify-content:stretch; 
 }
 .container:before { content:''; position:fixed; left:0; top:0; height:6px; background-color:#009bfa;
-  -webkit-animation:progress 5000ms linear forwards;
-          animation:progress 5000ms linear forwards;		
+  -webkit-animation:progress 3000ms linear forwards;
+          animation:progress 3000ms linear forwards;		
 }
 .top-container { flex-shrink:1; text-align:center; }
 .top-container .logo { padding:50px 0 30px; }
@@ -74,8 +74,10 @@ html, body { height:100%; }
 }
 .el-store .el { font-size:14px; line-height:22px; letter-spacing:-0.125em; color:#878787; text-align:center; white-space:nowrap; }
 .el-store .el > :nth-child(n+2) { margin-top:10px; }
-.el-linkto { padding:50px 0 30px; text-align:center; }
-.el-linkto .el { font-size:14px; line-height:22px; letter-spacing:-0.125em; color:#009bfa; text-decoration:underline; }
+.el-linkto { padding:50px 0 30px; text-align:center; 
+}
+.el-linkto .el { display:block; margin:10px 25px; padding:15px; font-size:14px; line-height:22px; letter-spacing:-0.125em; color:#ffffff; border-radius:4px; background-color:#009bfa; }
+.el-linkto .el.__mobile { background-color:transparent; color:#009bfa; text-decoration:underline; }
 
 @-webkit-keyframes helloworld { from { background-position: 0 0; } to { background-position: -2000px 0; } }
 @keyframes helloworld { from { background-position: 0 0; } to { background-position: -2000px 0; } }
