@@ -20,6 +20,7 @@
 			return sval;
 		}
 		$(function(){
+			$('.headline').text('['+getParam('evnId')'] '+$('.headline').text())
 			var url = {
 				'm':'https://m.lpoint.com/app/event/LWEA100200.do?evnId='+getParam('evnId'),
 				'a':'https://mobile.lpoint.com/app/common/AMZZ300400.do?type=event&evnId='+getParam('evnId')
