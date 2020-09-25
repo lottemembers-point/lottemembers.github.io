@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Draggable - Constrain movement</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script>
+    function init(el){
+			var container = $('<div id="temp-container"></div>');
+      var button = $('<button type="button" class="button __create" onclick="createButton();">영역 추가</button><button type="button" class="button __render" onclick="renderMap();">맵생성</button>');
+      $(el).wrap(container);
+      setTimeout(function(){
+        $('#temp-container').width($(el).width())
+      },500);
+      $('#temp-container').append(button);
+    }
+    function createButton(){
+      var el = $('<div class="coords draggable ui-widget-content" style="top:'+$(window).scrollTop()+'px;"><div class="status __coords"></div><div class="status __href"></div></div>');
+      $('#temp-container').append(el);
+      $('.coords').draggable({ 
+        containment: '#temp-container',
+        scroll: false,
+        drag:function(event,ui){
+          var coords = {
+            left : parseInt($(this).css('left')),
+            top : parseInt($(this).css('top')),
+            width : parseInt($(this).css('left'))+parseInt($(this).css('width')),
+            height : parseInt($(this).css('top'))+parseInt($(this).css('height'))
+          }
+          var reform = coords.left+', '+coords.top+', '+coords.width+', '+coords.height;
+          $(this).find('.status.__coords').text(reform);
+        }
+      });
+      $('.coords').resizable({
+        containment: '#temp-container',
+        stop:function(event,ui){
+          var coords = {
+            left : parseInt($(this).css('left')),
+            top : parseInt($(this).css('top')),
+            width : parseInt($(this).css('left'))+parseInt($(this).css('width')),
+            height : parseInt($(this).css('top'))+parseInt($(this).css('height'))
+          }
+          var reform = coords.left+', '+coords.top+', '+coords.width+', '+coords.height
+          $(this).find('.status.__coords').text(reform);
+        }
+      });
+    }
+    function renderMap(){
+      var ob = [];
+      $('.coords').each(function(index){
+        ob[index] = '<area shape="rect" coords="'+$(this).find('.__coords').text()+'" href="#" alt="">'
+      })
+      prompt('aa',ob)
+    }
+    $(function(){
+      $('img').on('click',function(e){
+        e.preventDefault();
+        if ( $('#temp-container').length > 0 ) return false;
+        init($(this));
+      })
+		})
+  </script>
+  <style>
+    #temp-container { position:relative; }
+    #temp-container > .output { position:fixed; left:0; right:0; bottom:0; padding:50%; color:#fff; background-color:#000; }
+    .button { color:#fff; border:none; background-color:#000; }
+    .button.__create { position:fixed; top:20px; right:20px; width:100px; height:40px; }
+    .button.__render { position:fixed; top:70px; right:20px; width:100px; height:40px; }
+    .draggable { width:50%; height:60px; }
+    .draggable > .status { padding:2px 10px; font-family:'consolars'; font-size:12px; color:#fff; background-color:rgba(0,0,0,0.8); }
+    .draggable > .status:empty { background:none !important; }
+    .draggable > .status:empty:before { content:none !important; }
+    .draggable > .status.__coords:before { content:'coords=' }
+    .draggable > .status.__href:before { content:'href=' }
+    .draggable > .href { padding:2px 10px; font-family:'consolars'; font-size:12px; color:#fff; background-color:#000; }
+    .ui-widget-content { position:absolute; top:0; left:0; background-color:rgba(0,255,255,0.3); box-sizing: border-box;
+      cursor:move; 
+    }
+    .ui-resizable-handle {
+        background-color:#000000; 
+        position: absolute;
+        font-size: 0.1px;
+        display: block;
+        -ms-touch-action: none;
+        touch-action: none;
+        transition:1s cubic-bezier(0,1,0,1);
+      }
+      .ui-resizable-s {
+        cursor: s-resize;
+        height: 2px;
+        width: 100%;
+        bottom:0;
+        left: 0;
+      }
+      .ui-resizable-s:hover { height:4px; }
+      .ui-resizable-e {
+        cursor: e-resize;
+        width:2px;
+        right:0;
+        top: 0;
+        height: 100%;
+      }
+      .ui-resizable-e:hover { width:4px; }
+      .ui-resizable-se {
+        cursor: nw-resize;
+        width:8px;
+        height:8px;
+        right:-8px; 
+        bottom:-8px;
+        background-color:#00FFFF;
+      }
+      .ui-resizable-se:hover {
+        width:16px; height:16px;
+      }
+  </style>
+</head>
+<body>
+ <img id="foo" src="https://m.lpoint.com/upload/images/ha/event/202009/7fae81f42ddb4105ae48c6f7db216de5.jpg" alt="">
+</body>
+</html>
